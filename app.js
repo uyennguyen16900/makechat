@@ -16,9 +16,10 @@ app.get('/', (req, res) => {
 
 const io = require('socket.io')(server)
 let onlineUsers = {}
+let channels = {"General": []}
 io.on("connection", (socket) => {
     // this file will be read on new socket connections
-    require('./sockets/chat.js')(io, socket, onlineUsers)
+    require('./sockets/chat.js')(io, socket, onlineUsers, channels)
 })
 
 server.listen('3000', () => {
