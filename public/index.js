@@ -1,8 +1,8 @@
 $(document).ready( () => {
     // connect to the sockt.io Server
-    const socker = io.connect()
+    const socket = io.connect()
 
-    $('creat-user-btn').click((e) => {
+    $('create-user-btn').click((e) => {
         e.preventDefault()
         let username = $('#username-input').val()
         if (username.length > 0) {
