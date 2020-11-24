@@ -5,4 +5,9 @@ module.exports = (io, socket) => {
         //  send the username to all clients currently connected
         io.emit('new user', username)
     })
+
+    socket.on('new message', (data) => {
+        console.log(`🎤 ${data.sender}: ${data.msg}`)
+        io.emit('new message', data)
+    })
 }
