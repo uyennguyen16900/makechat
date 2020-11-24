@@ -28,10 +28,6 @@ module.exports = (io, socket, onlineUsers, channels) => {
     })
 
     socket.on('new channel', (newChannel) => {
-        console.log(newChannel)
-    })
-
-    socket.on('new channel', (newChannel) => {
         //Save the new channel to our channels object. The array will hold the messages.
         channels[newChannel] = []
         //Have the socket join the new channel room.
@@ -45,12 +41,19 @@ module.exports = (io, socket, onlineUsers, channels) => {
         })
     })
 
-    // have the socket join the room of the channel
+    //Have the socket join the room of the channel
     socket.on('user changed channel', (newChannel) => {
         socket.join(newChannel)
         socket.emit('user changed channel', {
-            channel: newChannel,
-            messages: channels[newChannel]
+            channel : newChannel,
+            messages : channels[newChannel]
         })
     })
+
+    socket.on('typing', () => {
+        console.log(`${socket.username} is typing`)
+        socket.broadcast.emit('typing', {username: socket.username})
+    })
+
+
 }

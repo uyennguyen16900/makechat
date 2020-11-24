@@ -1,15 +1,16 @@
 $(document).ready( () => {
     // connect to the sockt.io Server
-    const socket = io.connect()
-
-    //  keep track of the current user
+    const socket = io.connect();
     let currentUser;
-    socket.emit('user changes channel', 'General')
-    // users can change the channel by clicking on its name
-    $(document).on('click', '.channel', (e) => {
-        let newChannel = e.target.textContent
-        socket.emit('user changes channel', newChannel)
-    })
+    socket.emit('get online users');
+    //Each user should be in the general channel by default.
+    socket.emit('user changed channel', "General");
+
+    //Users can change the channel by clicking on its name.
+    $(document).on('click', '.channel', (e)=>{
+        let newChannel = e.target.textContent;
+        socket.emit('user changed channel', newChannel);
+    });
     // get the online users from the server
     socket.emit('get online users', (onlineUsers) => {
         for (username in onlineUsers) {
@@ -102,5 +103,14 @@ $(document).ready( () => {
                 </div>
             `)
         })
+    })
+
+    $('#chat-input').bind('keypress', () => {
+        socket.emit('typing')
+    })
+
+    socket.on('typing', (data) => {
+        console.log(`${data.username}`)
+        $('.feedback').html('<p><i>' + data.username + ' is typing a message...' + '</i></p>')
     })
 })
