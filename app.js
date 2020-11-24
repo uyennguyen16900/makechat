@@ -5,13 +5,19 @@ const server = require('http').Server(app)
 
 // Express View Engine for Handlebars
 const exphbs = require('express-handlebars')
-app.engine('handlebars', exphbs())
+app.engine('handlebars', exphbs({defaultLayout: null}))
 app.set('view engine', 'handlebars')
 // establish your public folder
 app.use('/public', express.static('public'))
 
 app.get('/', (req, res) => {
     res.render('index.handlebars')
+})
+
+const io = require('socket.io')(server)
+io.on("connection", (socket) => {
+    // this file will be read on new socket connections
+    require('./sockets/chat.js')(io, socket)
 })
 
 server.listen('3000', () => {
