@@ -1,12 +1,13 @@
 module.exports = (io, socket, onlineUsers, channels) => {
     // listen for "new user" socket emits
     socket.on('new user', (username) => {
-        //Save the username as key to access the user's socket id
+            //Save the username as key to access the user's socket id
         onlineUsers[username] = socket.id
+
         //Save the username to socket as well. This is important for later.
         socket["username"] = username
         console.log(`✋ ${username} has joined the chat! ✋`);
-        io.emit("new user", username)
+        io.emit("new user", {username: username, channels: channels})
     })
 
     socket.on('new message', (data) => {
@@ -21,12 +22,14 @@ module.exports = (io, socket, onlineUsers, channels) => {
         socket.emit('get online users', onlineUsers)
     })
 
+    // This fires when a user closes out of the application
+    // socket.on("disconnect") is a special listener that fires when a user exits out of the application.
     socket.on('disconnect', () => {
-        // this deletes the user by using the username we saved to the socket
+        //This deletes the user by using the username we saved to the socket
         delete onlineUsers[socket.username]
-        io.emit('user has left', onlineUsers)
-    })
-
+        io.emit('user has left', onlineUsers);
+    });
+    
     socket.on('new channel', (newChannel) => {
         //Save the new channel to our channels object. The array will hold the messages.
         channels[newChannel] = []

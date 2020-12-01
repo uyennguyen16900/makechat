@@ -58,9 +58,14 @@ $(document).ready( () => {
     })
 
     //socket listeners
-    socket.on('new user', (username) => {
-        console.log(`${username} has joined the chat`);
-        $('.users-online').append(`<div class="user-online">${username}</div>`);
+    socket.on('new user', (data) => {
+        console.log(`${data.username} has joined the chat`);
+        $('.users-online').append(`<div class="user-online">${data.username}</div>`);
+        // for (channel in data.channels) {
+        //     if (channel != "General") {
+        //         $('.channels').append(`<div class="channel">${channel}</div>`)
+        //     }
+        // }
     })
 
     //Output the new message
@@ -76,12 +81,13 @@ $(document).ready( () => {
         }
     })
 
-    socket.on('user has left', () => {
-        $('.users-online').empty()
-        for (username in onlineUsers) {
-            $('.users-online').append(`<p>${username}</p>`)
+    //Refresh the online user list
+    socket.on('user has left', (onlineUsers) => {
+        $('.users-online').empty();
+        for(username in onlineUsers){
+            $('.users-online').append(`<p>${username}</p>`);
         }
-    })
+    });
 
     socket.on('new channel', (newChannel) => {
         $('.channels').append(`<div class="channel">${newChannel}</div>`)
@@ -112,5 +118,10 @@ $(document).ready( () => {
     socket.on('typing', (data) => {
         console.log(`${data.username}`)
         $('.feedback').html('<p><i>' + data.username + ' is typing a message...' + '</i></p>')
+    })
+
+    socket.on('user exists', (data) => {
+        console.log(`${data}`)
+        $('#error-container').html(data)
     })
 })
