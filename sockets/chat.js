@@ -58,5 +58,10 @@ module.exports = (io, socket, onlineUsers, channels) => {
         socket.broadcast.emit('typing', {username: socket.username})
     })
 
+    socket.on('sign out', () => {
+        //This deletes the user by using the username we saved to the socket
+        delete onlineUsers[socket.username]
+        io.emit('user has left', onlineUsers);
+    });
 
 }

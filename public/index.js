@@ -24,8 +24,11 @@ $(document).ready( () => {
             socket.emit('new user', $('#username-input').val());
             // Save the current user when created
             currentUser = $('#username-input').val();
-            $('.username-form').remove();
-            $('.main-container').css('display', 'flex');
+            // $('.username-form').remove();
+            // $('.username-form').css('display', 'none');
+            // $('.main-container').css('display', 'flex');
+            $('#username-form').addClass('is-hidden')
+            $('#main-container').removeClass('is-hidden')
         }
     });
 
@@ -123,5 +126,14 @@ $(document).ready( () => {
     socket.on('user exists', (data) => {
         console.log(`${data}`)
         $('#error-container').html(data)
+    })
+
+    $('#sign-out').click( () => {
+        console.log('clicked')
+        socket.emit('sign out')
+        // $('.username-form').css('display', 'flex')
+        // $('.main-containter').css('display', 'none')
+        $('#username-form').removeClass('is-hidden')
+        $('#main-container').addClass('is-hidden')
     })
 })

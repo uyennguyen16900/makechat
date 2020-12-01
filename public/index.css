@@ -168,7 +168,11 @@
   }
   
   .main-container {
-    display: none;
+    display: flex;
     flex-direction: row;
     width: 100%;
+  }
+
+  .is-hidden {
+    display: none !important;
   }
