@@ -7,37 +7,63 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
     <script src="/public/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css'></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"
+    />
     <link href='/public/index.css' rel='stylesheet' type='text/css'></link>
   </head>
   <body>
-    <div id="error-container"></div>
-
-    <form id="username-form" class="username-form">
-      <input id="username-input" placeholder="Username"></input>
-      <button id="create-user-btn">Join Chat</button>
-    </form>
+    <div id="login-container">
+      <form id="username-form" class="username-form">
+        <h2 style="text-align: center; color: white">Sign In</h2>
+        <input id="username-input" placeholder="Username"></input>
+        <button id="create-user-btn">Join Chat</button>
+      </form>
+    </div>
 
     <div id="main-container" class="main-container is-hidden">
-      <button id="sign-out">Sign Out</button>
-      <div class="channels-and-users-online-container">
-        <h1 class="brand">Make Chat</h1>
-        <div class="channels">
-            <h2 class="channels-label">Channels</h2>
-            <div class="new-channel-form"><input id="new-channel-input" placeholder="New Channel" /><button id="new-channel-btn">Create</button></div>
+      <div class="channel-chat-container"></div>
+      <nav class="navbar navbar-dark">
+        <a class="navbar-brand" href="#">Make Chat</a>
+        <form class="form-inline my-2 my-lg-0">
+          <button class="btn" id="sign-out">Sign Out</button>
+        </form>
+      </nav>
+      <div class="row">
+        <div class="col-3 channels-and-users-online-container">
+          <div class="channels">
+            <div class="d-flex flex-nowrap">
+              <h5 class="fas fa-comments"></h5>
+              <h5 class="label">Channels</h5>
+            </div>
+            <div class="new-channel-form input-group mb-3">
+              <input type="text" id="new-channel-input" class="form-control" placeholder="New channel" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2 new-channel-btn">Create</button>
+              </div>
+            </div>
+            {{!-- <div class="new-channel-form"><input id="new-channel-input" placeholder="New Channel" /><button class="btn channel-create-btn" id="new-channel-btn">Create</button></div> --}}
             <div class="channel-current">General</div>
-        </div>
-        <h2>Online Users</h2>
-        <div class="users-online"></div>
-      </div>
-      <div class="chat-container">
-        <div class="chat-container-fluid">
-          <div class="message-container">
-              <h2>Messages</h2>
           </div>
-          <div class="text-chat-divide"></div>
-          <div class="feedback"></div>
-          <div class="chat-box"><textarea id="chat-input" placeholder="Type a message"></textarea><button class="btn" id="send-chat-btn">Send</button></div>
+          <div class="d-flex flex-nowrap">
+            <h5 class="fas fa-users"></h5>
+            <h5 class="label">Online Users</h5>
+          </div>
+          <div class="users-online"></div>
+        </div>
+        <div class="col-9 chat-container">
+          <div class="chat-container-fluid">
+            <div class="message-container">
+                <h2>Messages</h2>
+            </div>
+            <div class="input-box">
+              <div class="text-chat-divide"></div>
+              <div class="feedback"></div>
+              <div class="chat-box"><textarea id="chat-input" placeholder="Type a message"></textarea><button class="btn" id="send-chat-btn">Send</button></div>
+            </div>
+            
+          </div>
         </div>
       </div>
     </div>

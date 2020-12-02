@@ -27,7 +27,7 @@ $(document).ready( () => {
             // $('.username-form').remove();
             // $('.username-form').css('display', 'none');
             // $('.main-container').css('display', 'flex');
-            $('#username-form').addClass('is-hidden')
+            $('#login-container').addClass('is-hidden')
             $('#main-container').removeClass('is-hidden')
         }
     });
@@ -133,7 +133,7 @@ $(document).ready( () => {
         socket.emit('sign out')
         // $('.username-form').css('display', 'flex')
         // $('.main-containter').css('display', 'none')
-        $('#username-form').removeClass('is-hidden')
+        $('#login-container').removeClass('is-hidden')
         $('#main-container').addClass('is-hidden')
     })
 })
