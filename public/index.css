@@ -264,3 +264,6 @@ body {
     color: #e2e1e6;
   }
 
+  ::-webkit-scrollbar-corner {
+    background: rgba(0,0,0,0);
+  }
