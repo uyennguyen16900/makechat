@@ -52,6 +52,7 @@ $(document).ready( () => {
 
     $('#new-channel-btn').click( () => {
         let newChannel = $('#new-channel-input').val()
+        console.log(newChannel)
 
         if (newChannel.length > 0) {
             // emit the new channel to the server
@@ -120,7 +121,7 @@ $(document).ready( () => {
 
     socket.on('typing', (data) => {
         console.log(`${data.username}`)
-        $('.feedback').html('<p><i>' + data.username + ' is typing a message...' + '</i></p>')
+        $('.feedback').html('<p><i>' + data.username + ' is typing...' + '</i></p>')
     })
 
     socket.on('user exists', (data) => {
