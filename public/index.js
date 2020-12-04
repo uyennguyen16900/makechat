@@ -85,7 +85,7 @@ $(document).ready( () => {
         if (currentChannel == data.channel) {
             $('.message-container').append(`
             <div class="message">
-                <p class="message-user" style="font-weight:bold">${data.sender} <span style="color:grey;font-weight:normal;font-size:13px;">${data.time}</span>: </p>
+                <p class="message-user" style="font-weight:bold">${data.sender} <span style="color:grey;font-weight:normal;font-size:13px;">${data.time}</span></p>
                 <p class="message-text">${data.message}</p>
             </div>
             `);
@@ -115,7 +115,7 @@ $(document).ready( () => {
         data.messages.forEach((message) => {
             $('.message-container').append(`
                 <div class="message">
-                    <p class="message-user">${message.sender} <span style="color:grey">${message.time}: </span></p>
+                    <p class="message-user">${message.sender} <span style="color:grey">${message.time}</span></p>
                     <p class="message-text">${message.message}</p>
                 </div>
             `)

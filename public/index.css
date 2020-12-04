@@ -210,19 +210,22 @@ body {
     background-color: #5e1df5;
   }
   
-  .message {
-    margin-bottom: 5px;
-  }
-  
   .message-user {
     display: inline;
     color: white;
     font-weight: bold;
   }
+
+  .message {
+    /* border: 1px solid grey; */
+    padding: 5px;
+    margin-bottom: 5px;
+  }
   
   .message-text {
-    display: inline;
-    color: white
+    /* display: inline; */
+    color: white;
+    margin-bottom: 0px;
   }
   
   .channel-chat-container {
