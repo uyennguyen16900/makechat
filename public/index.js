@@ -32,19 +32,26 @@ $(document).ready( () => {
         }
     });
 
+    // const timestamp = () => {
+    //     console.log('time')
+    //     return moment().format('h:mm a')
+    // }
+  
     $('#send-chat-btn').click((e) => {
         e.preventDefault();
         // get the clien's channel
         let channel = $('.channel-current').text()
         // Get the message text value
         let message = $('#chat-input').val();
+        // let time = timestamp()
         // Make sure it's not empty
         if(message.length > 0){
             // Emit the message with the current user to the server
             socket.emit('new message', {
                 sender : currentUser,
                 message : message,
-                channel: channel
+                channel: channel,
+                time: moment().format('h:mm a')
             });
             $('#chat-input').val("");
         }
@@ -78,7 +85,7 @@ $(document).ready( () => {
         if (currentChannel == data.channel) {
             $('.message-container').append(`
             <div class="message">
-                <p class="message-user">${data.sender}: </p>
+                <p class="message-user" style="font-weight:bold">${data.sender} <span style="color:grey;font-weight:normal;font-size:13px;">${data.time}</span>: </p>
                 <p class="message-text">${data.message}</p>
             </div>
             `);
@@ -108,7 +115,7 @@ $(document).ready( () => {
         data.messages.forEach((message) => {
             $('.message-container').append(`
                 <div class="message">
-                    <p class="message-user">${message.sender}: </p>
+                    <p class="message-user">${message.sender} <span style="color:grey">${message.time}: </span></p>
                     <p class="message-text">${message.message}</p>
                 </div>
             `)
@@ -121,7 +128,7 @@ $(document).ready( () => {
 
     socket.on('typing', (data) => {
         console.log(`${data.username}`)
-        $('.feedback').html('<p><i>' + data.username + ' is typing...' + '</i></p>')
+        $('.feedback').html('<p style="margin-bottom:3px;color:grey"><i>' + data.username + ' is typing...' + '</i></p>')
     })
 
     socket.on('user exists', (data) => {
@@ -137,4 +144,7 @@ $(document).ready( () => {
         $('#login-container').removeClass('is-hidden')
         $('#main-container').addClass('is-hidden')
     })
+
+    
+
 })

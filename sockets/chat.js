@@ -1,4 +1,4 @@
-module.exports = (io, socket, onlineUsers, channels) => {
+module.exports = (io, socket, moment, onlineUsers, channels) => {
     // listen for "new user" socket emits
     socket.on('new user', (username) => {
             //Save the username as key to access the user's socket id
@@ -12,7 +12,7 @@ module.exports = (io, socket, onlineUsers, channels) => {
 
     socket.on('new message', (data) => {
         console.log(`🎤 ${data.sender}: ${data.message}`)
-        channels[data.channel].push({sender: data.sender, message: data.message})
+        channels[data.channel].push({sender: data.sender, message: data.message, time: data.time})
         // emit only to sockets that are in the channel room
         io.to(data.channel).emit('new message', data)
     })

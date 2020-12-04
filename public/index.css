@@ -74,10 +74,11 @@ body {
     padding: 10px 0px;
     margin: 2px 0px;
     cursor: pointer;
+    color: grey;
   }
   
   .channel:hover {
-    color: grey;
+    color: white;
   }
   
   .channel-current {
@@ -105,8 +106,9 @@ body {
   
   .input-box{
     position: absolute;
-    bottom: 0;
+    bottom: 2%;
     width: 90%;
+    left: 5%;
   }
 
   .chat-container-fluid {
@@ -116,13 +118,13 @@ body {
   }
   
   .container-fluid {
-    border-bottom: 1px solid #5e1df5;
+    /* border-bottom: 1px solid #5e1df5; */
     overflow: hidden;
-    height: 590px;
+    height: 580px;
   }
   
   .row {
-    height: 590px;
+    height: 580px;
   }
 
   .channels-and-users-online-container {
@@ -130,7 +132,7 @@ body {
     flex-direction: column;
     color: white;
     background-color: #19171f;
-    height: 590px;
+    height: 580px;
   }
 
   .channel-users-content {
@@ -152,29 +154,31 @@ body {
   }
   
   .text-chat-divide {
-    border: 0.5px solid #5e1df5;
+    /* border: 0.5px solid #5e1df5; */
     margin-bottom: 10px;
   }
   
-  .chat-box {
+  /* .chat-box {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 10px;
-  }
+
+  } */
   
   label {
     display: block;
   }
   
   #chat-input {
-    width: 100%;
-    display: inline;
+    /* width: 100%;
+    display: inline; */
+    border: 1px solid #5e1df5;
   }
   
   #send-chat-btn {
     /* width: 10%; */
     display: inline;
+    border: 1px solid #5e1df5;
   }
   
   .message-container {
