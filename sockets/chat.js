@@ -53,9 +53,14 @@ module.exports = (io, socket, moment, onlineUsers, channels) => {
         })
     })
 
-    socket.on('typing', () => {
+    socket.on('typing', (data) => {
+        if (data) {
+            socket.broadcast.emit('typing', {username: socket.username})
+        } else {
+            socket.broadcast.emit('typing', false)
+        }
+        // 
         console.log(`${socket.username} is typing`)
-        socket.broadcast.emit('typing', {username: socket.username})
     })
 
     socket.on('sign out', () => {

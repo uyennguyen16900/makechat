@@ -115,20 +115,31 @@ $(document).ready( () => {
         data.messages.forEach((message) => {
             $('.message-container').append(`
                 <div class="message">
-                    <p class="message-user">${message.sender} <span style="color:grey">${message.time}</span></p>
+                    <p class="message-user">${message.sender} <span style="color:grey;font-weight:normal;font-size:13px;">${message.time}</span></p>
                     <p class="message-text">${message.message}</p>
                 </div>
             `)
         })
     })
 
-    $('#chat-input').bind('keypress', () => {
-        socket.emit('typing')
+    var timeout
+    const timeoutFunction = () => {
+        socket.emit("typing", false)
+    }
+
+    $('#chat-input').keyup(() => {
+        socket.emit('typing', true);
+        clearTimeout(timeout)
+        timeout = setTimeout(timeoutFunction, 3000)
+
     })
 
     socket.on('typing', (data) => {
-        console.log(`${data.username}`)
-        $('.feedback').html('<p style="margin-bottom:3px;color:grey"><i>' + data.username + ' is typing...' + '</i></p>')
+        if (data) {
+            $('.feedback').html('<p style="margin-bottom:3px;color:grey"><i>' + data.username + ' is typing...' + '</i></p>')
+        } else {
+            $('.feedback').html('')
+        }
     })
 
     socket.on('user exists', (data) => {
@@ -144,7 +155,4 @@ $(document).ready( () => {
         $('#login-container').removeClass('is-hidden')
         $('#main-container').addClass('is-hidden')
     })
-
-    
-
 })
