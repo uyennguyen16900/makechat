@@ -9,18 +9,22 @@ MakeChat is a realtime messaging application using Socket.io, jQuery, Node.js an
 Use the package manager [npm](https://docs.npmjs.com/) to install MakeChat.
 
 ```bash
+git clone https://github.com/uyennguyen16900/makechat.git
 npm install
 ```
 
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
-
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+> To get started...
+
+### Step 1
+
+- **Option 1**
+    - 🍴 Fork this repo!
+
+- **Option 2**
+    - 👯 Clone this repo to your local machine using `https://github.com/uyennguyen16900/makechat.git`
+
+### Step 2
+
+- **HACK AWAY!** 🔨🔨🔨
