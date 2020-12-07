@@ -2,7 +2,7 @@
 
 MakeChat is a realtime messaging application using Socket.io, jQuery, Node.js and Express.js with client-side Javascript.
 <!-- ![](public/makechat.gif | width=250) -->
-<img src="public/makechat.gif" width=200>
+<img src="public/makechat.gif" width=500>
 
 
 ## Installation
